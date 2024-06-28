@@ -19,7 +19,7 @@ Le système combine plusieurs technologies clés :
 5. **Sécurité et gestion des utilisateurs** : Système d'authentification robuste et gestion des droits d'accès.
 
 ## Arborescence du projet
-
+```
 rag-bot-manager/
 │
 ├── backend/
@@ -65,7 +65,7 @@ rag-bot-manager/
 │   └── docker-compose.yml
 │
 └── README.md
-
+```
 ## Installation et configuration
 
 ### Prérequis
