@@ -1,0 +1,10 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/backend/env
+/backend/__pycache__
+/backend/.env
+/frontend/node_modules/.bin
+/frontend/node_modules
