@@ -23,16 +23,29 @@ Le système combine plusieurs technologies clés :
 
 ## Arborescence du projet
 
-```
 rag-bot-manager/
 │
 ├── backend/
 │   ├── app/
 │   │   ├── __init__.py
 │   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── bot.py
+│   │   │   ├── user.py
+│   │   │   └── task.py
 │   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── auth.py
+│   │   │   ├── bot.py
+│   │   │   ├── rag.py
+│   │   │   └── admin.py
 │   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   ├── bot_service.py
+│   │   │   └── rag_service.py
 │   │   └── utils/
+│   │       ├── __init__.py
+│   │       └── helpers.py
 │   ├── config.py
 │   ├── requirements.txt
 │   └── run.py
@@ -55,7 +68,6 @@ rag-bot-manager/
 │   └── docker-compose.yml
 │
 └── README.md
-```
 
 ## Installation et configuration
 
