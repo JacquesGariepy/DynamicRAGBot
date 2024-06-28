@@ -188,7 +188,7 @@ Pour toute question ou problème, veuillez ouvrir une issue sur le dépôt GitHu
 
 ## Auteurs
 
-- [Votre nom] - Développeur principal
+- Jacques Gariépy - Développeur principal
 
 ## Remerciements
 
