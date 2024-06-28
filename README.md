@@ -1,21 +1,23 @@
+
 # RAG Bot Manager
 
 ## Description
 
-RAG Bot Manager est une application d'entreprise complète conçue pour la gestion de bots d'exploration et d'un système de Retrieval-Augmented Generation (RAG). Cette plateforme offre une solution robuste pour créer, gérer et surveiller des bots autonomes qui collectent des informations à partir de diverses sources, tout en fournissant une interface conviviale pour interagir avec un système RAG avancé.
+RAG Bot Manager est une application business complète pour la gestion de bots d'exploration et d'un système de Retrieval-Augmented Generation (RAG). Cette plateforme permet de créer, gérer et surveiller des bots autonomes qui collectent des informations à partir de diverses sources, tout en offrant une interface conviviale pour interagir avec un système RAG avancé.
 
-## Fonctionnalités principales
+## Concept
 
-- Création et gestion de bots d'exploration dynamiques
-- Interface utilisateur intuitive pour le contrôle des bots
-- Système RAG intégré pour la génération de réponses contextuelles
-- Tableau de bord pour la surveillance des performances des bots
-- Gestion des utilisateurs et des droits d'accès
-- API RESTful pour l'intégration avec d'autres systèmes
+Le système combine plusieurs technologies clés :
 
-## Architecture du projet
+1. **Bots d'exploration dynamiques** : Des agents autonomes capables de scraper le web, explorer des dépôts Git, des systèmes de fichiers locaux et d'autres sources de données.
+2. **Système RAG (Retrieval-Augmented Generation)** : Un mécanisme intelligent qui utilise les informations collectées pour générer des réponses précises et contextuelles aux questions des utilisateurs.
+3. **Interface de gestion centralisée** : Une application web qui permet aux utilisateurs de créer, configurer, surveiller et contrôler les bots, ainsi que d'interagir avec le système RAG.
+4. **Stockage vectoriel** : Utilisation de Qdrant pour un stockage et une recherche efficaces des données vectorisées.
+5. **Sécurité et gestion des utilisateurs** : Système d'authentification robuste et gestion des droits d'accès.
 
-```
+## Arborescence du projet
+
+```plaintext
 rag-bot-manager/
 │
 ├── backend/
@@ -23,8 +25,9 @@ rag-bot-manager/
 │   │   ├── __init__.py
 │   │   ├── models/
 │   │   │   ├── __init__.py
+│   │   │   ├── bot.py
 │   │   │   ├── user.py
-│   │   │   └── bot.py
+│   │   │   └── task.py
 │   │   ├── routes/
 │   │   │   ├── __init__.py
 │   │   │   ├── auth.py
@@ -38,9 +41,6 @@ rag-bot-manager/
 │   │   └── utils/
 │   │       ├── __init__.py
 │   │       └── helpers.py
-│   ├── tests/
-│   │   ├── __init__.py
-│   │   └── test_bot_service.py
 │   ├── config.py
 │   ├── requirements.txt
 │   ├── run.py
@@ -61,7 +61,8 @@ rag-bot-manager/
 │   │   ├── services/
 │   │   │   ├── api.js
 │   │   │   ├── botService.js
-│   │   │   └── ragService.js
+│   │   │   ├── ragService.js
+│   │   │   └── settingsService.js
 │   │   ├── App.js
 │   │   └── index.js
 │   ├── package.json
@@ -73,11 +74,50 @@ rag-bot-manager/
 │   ├── frontend.Dockerfile
 │   └── docker-compose.yml
 │
-├── README.md
-└── CONTRIBUTING.md
+└── README.md
 ```
 
-## Technologies utilisées
+## Installation et configuration
+
+### Prérequis
+
+- Docker et Docker Compose
+- Node.js (v14+) et npm pour le développement frontend
+- Python 3.8+ pour le développement backend
+- Compte OpenAI avec clé API valide
+
+### Étapes d'installation
+
+1. Clonez le dépôt :
+    ```bash
+    git clone https://github.com/votre-organisation/rag-bot-manager.git
+    cd rag-bot-manager
+    ```
+
+2. Configuration du backend :
+    ```bash
+    cd backend
+    cp .env.example .env
+    pip install -r requirements.txt
+    ```
+
+3. Configuration du frontend :
+    ```bash
+    cd ../frontend
+    cp .env.example .env
+    npm install
+    ```
+
+4. Lancement de l'application avec Docker :
+    ```bash
+    cd ../docker
+    docker-compose up -d
+    ```
+
+5. Accédez à l'application :
+    Ouvrez votre navigateur et allez à `http://localhost:80`.
+
+### Outils et technologies utilisés
 
 - **Backend** :
   - Flask : Framework web Python
@@ -99,66 +139,26 @@ rag-bot-manager/
   - Docker : Pour la conteneurisation de l'application
   - Docker Compose : Pour l'orchestration des services
 
-## Prérequis
-
-- Docker et Docker Compose
-- Node.js (v14+) et npm pour le développement frontend
-- Python 3.8+ pour le développement backend
-- Compte OpenAI avec clé API valide
-
-## Installation et configuration
-
-1. Clonez le dépôt :
-   ```
-   git clone https://github.com/votre-organisation/rag-bot-manager.git
-   cd rag-bot-manager
-   ```
-
-2. Configuration du backend :
-   ```
-   cd backend
-   cp .env.example .env
-   # Modifiez le fichier .env avec vos propres valeurs
-   pip install -r requirements.txt
-   ```
-
-3. Configuration du frontend :
-   ```
-   cd ../frontend
-   cp .env.example .env
-   # Modifiez le fichier .env si nécessaire
-   npm install
-   ```
-
-4. Lancement de l'application avec Docker :
-   ```
-   cd ../docker
-   docker-compose up -d
-   ```
-
-5. Accédez à l'application :
-   Ouvrez votre navigateur et allez à `http://localhost:80`
-
 ## Développement
 
 Pour lancer l'application en mode développement :
 
 1. Backend :
-   ```
-   cd backend
-   flask run
-   ```
+    ```bash
+    cd backend
+    flask run
+    ```
 
 2. Frontend :
-   ```
-   cd frontend
-   npm start
-   ```
+    ```bash
+    cd frontend
+    npm start
+    ```
 
 ## Tests
 
 Pour exécuter les tests du backend :
-```
+```bash
 cd backend
 python -m unittest discover tests
 ```
@@ -169,10 +169,10 @@ Pour déployer l'application en production :
 
 1. Configurez les variables d'environnement pour la production dans les fichiers `.env`.
 2. Construisez et déployez les conteneurs Docker :
-   ```
-   cd docker
-   docker-compose -f docker-compose.prod.yml up -d
-   ```
+    ```bash
+    cd docker
+    docker-compose -f docker-compose.prod.yml up -d
+    ```
 
 ## Contribution
 
@@ -188,7 +188,7 @@ Pour toute question ou problème, veuillez ouvrir une issue sur le dépôt GitHu
 
 ## Auteurs
 
-- Jacques Gariépy - Développeur principal
+- [Votre nom] - Développeur principal
 
 ## Remerciements
 
