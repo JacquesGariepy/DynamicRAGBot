@@ -1,6 +1,3 @@
-Voici un fichier README.md complet pour le projet :
-
-```markdown
 # RAG Bot Manager
 
 ## Description
@@ -174,6 +171,3 @@ Les contributions sont les bienvenues ! Veuillez consulter le fichier CONTRIBUTI
 ## Licence
 
 Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-```
-
-Ce README fournit une vue d'ensemble complète du projet, y compris sa structure, son installation, et les technologies utilisées. Il peut être adapté ou étendu selon les besoins spécifiques du projet et de l'équipe.
